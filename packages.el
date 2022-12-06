@@ -48,3 +48,12 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+(package! evil-cleverparens)
+(package! sweeprolog
+  :recipe
+  (:type git
+   :host nil
+   :repo "https://git.sr.ht/~eshel/sweep"
+   :branch "main"
+   :files ("*.el" "sweep.pl")))

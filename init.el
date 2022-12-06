@@ -64,7 +64,7 @@
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
-       ;;word-wrap         ; soft wrapping with language-aware indent
+       word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
        dired             ; making dired pretty [functional]
@@ -81,7 +81,7 @@
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       ;;(spell +flyspell) ; tasing you for misspelling mispelling
+       (spell +flyspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
@@ -95,7 +95,7 @@
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
-       ;;lsp               ; M-x vscode
+       lsp               ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -116,7 +116,7 @@
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
        ;;(cc +lsp)         ; C > C++ == 1
-       ;;clojure           ; java with a lisp
+       (clojure +lsp)           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
@@ -173,7 +173,7 @@
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        ;;web               ; the tubes
-       ;;yaml              ; JSON, but readable
+       yaml              ; JSON, but readable
        ;;zig               ; C, but simpler
 
        :email
