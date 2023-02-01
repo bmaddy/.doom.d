@@ -101,5 +101,12 @@
   :mode (("\\.pl\\'" . sweeprolog-mode)
          ("\\.plt\\'" . sweeprolog-mode)))
 
-;; idea
-;; (after! org (+word-wrap-mode 0))
+(after! org
+  ;; track when todo items are closed
+  (setq org-log-done 'time)
+  ;; this doesn't seem to work
+  ;; don't wrap lines
+  (+word-wrap-mode 0)
+  ;; this doesn't seem to work
+  ;; close org trees by default
+  (org-cycle-global 1))
