@@ -23,7 +23,7 @@
 ;;
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-(setq doom-font (font-spec :family "Fira Code" :size 34 :weight 'semi-light))
+(setq doom-font (font-spec :family "Fira Code" :size 19 :weight 'semi-light))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -106,7 +106,8 @@
   (setq org-log-done 'time)
   ;; this doesn't seem to work
   ;; don't wrap lines
-  (+word-wrap-mode 0)
+  ;; (+word-wrap-mode 0)
   ;; this doesn't seem to work
   ;; close org trees by default
-  (org-cycle-global 1))
+  ;; (org-cycle-global 1)
+  )
