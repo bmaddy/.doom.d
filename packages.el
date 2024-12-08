@@ -50,10 +50,13 @@
 ;(unpin! t)
 
 (package! evil-cleverparens)
-(package! sweeprolog
-  :recipe
-  (:type git
-   :host nil
-   :repo "https://git.sr.ht/~eshel/sweep"
-   :branch "main"
-   :files ("*.el" "sweep.pl")))
+
+(package! ediprolog)
+
+;; (package! sweeprolog
+;;   :recipe
+;;   (:type git
+;;    :host nil
+;;    :repo "https://git.sr.ht/~eshel/sweep"
+;;    :branch "main"
+;;    :files ("*.el" "sweep.pl")))
