@@ -52,15 +52,6 @@
 (setq evil-snipe-override-evil-repeat-keys nil)
 (setq doom-localleader-key ",")
 
-;; Use Prolog, not Perl
-;; (use-package! sweeprolog
-;;   :mode (("\\.pl\\'" . sweeprolog-mode)
-;;          ("\\.plt\\'" . sweeprolog-mode)))
-;; (use-package! ediprolog
-;;   :mode (("\\.pl\\'" . prolog-mode)
-;;          ("\\.plt\\'" . prolog-mode)))
-;; (add-to-list 'auto-mode-alist '("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode))
-
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -106,60 +97,20 @@
 (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
 (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
-;; (after! ediprolog
-;;   ;;
-;;   ;; (setq ediprolog-program "docker run -v .:/mnt -it mjt128/scryer-prolog")
-;;   ;;
-;;   ;; (setq ediprolog-program "docker")
-;;   ;; (setq ediprolog-program-switches '("run" "-v" ".:/mnt" "mjt128/scryer-prolog"))
-;;   ;;
-;;   ;; (setq ediprolog-program "bash")
-;;   ;; (setq ediprolog-program-switches '("-c" "/home/bmaddy/bin/scryer-prolog"))
-;;   ;;
-;;   ;; (setq ediprolog-program "/home/bmaddy/bin/scryer-prolog")
-
-;;   ;; (setq ediprolog-system 'swi)
-;;   (setq ediprolog-program "/snap/bin/swi-prolog.swipl")
-;;   (setq ediprolog-program "/usr/bin/swipl")
-;;    )
-
 (use-package! ediprolog
   :mode ("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode)
   :config
 
   ;; (setq ediprolog-system 'swi)
   ;; (setq ediprolog-program "/usr/bin/swipl")
-  ;; works
 
   ;; (setq ediprolog-system 'swi)
   ;; (setq ediprolog-program "/snap/bin/swi-prolog.swipl")
-  ;; works
-
-  ;; (setq ediprolog-program "docker run -v .:/mnt -v /tmp:/tmp -it mjt128/scryer-prolog")
-  ;; Dec  5 00:04:42: starting: ("docker run -v .:/mnt -v /tmp:/tmp -it mjt128/scryer-prolog")
-  ;; No prompt found.
-
-
-  ;; (setq ediprolog-program "docker")
-  ;; (setq ediprolog-program-switches '("run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-it" "mjt128/scryer-prolog"))
-  ;; Dec  5 00:06:41: starting: ("docker" "run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-it" "mjt128/scryer-prolog")
-  ;; [?2004h[6n
-  ;; [K?- 
-  ;; [3C
-  ;; No prompt found.
 
   ;; works, but has ^M after each line
   (setq ediprolog-program "docker")
   (setq ediprolog-program-switches '("run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-e" "TERM=dumb" "-it" "mjt128/scryer-prolog"))
 
-  ;; (setq ediprolog-program "docker")
-  ;; (setq ediprolog-program-switches '("run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-e" "TERM=dumb" "-it" "mjt128/scryer-prolog" "|" "tr" "-d" "'\r'"))
-
-
-
-  ;; (setq ediprolog-program "docker run -v .:/mnt -i mjt128/scryer-prolog")
-
-  ;; (setq ediprolog-program "/home/bmaddy/bin/scryer-prolog")
   )
 
 (after! org
