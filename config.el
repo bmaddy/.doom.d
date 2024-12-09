@@ -97,47 +97,74 @@
 (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
 (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
-(defun pl-kill-prolog () (documentation 'ediprolog-kill-prolog)
-       (interactive) (ediprolog-dwim 0))
-(defun pl-consult-buffer () (documentation 'ediprolog-consult)
-       (interactive) (ediprolog-consult))
-(defun pl-consult-buffer-new () (documentation 'ediprolog-consult)
-       (interactive) (ediprolog-consult t))
-(defun pl-toplevel () (documentation 'ediprolog-toplevel)
-       (interactive) (ediprolog-dwim 7))
-(defun pl-consult-query () "Consults buffer then eval query."
-       (interactive) (ediprolog-dwim '(4)))
-(defun pl-consult-query-new () "Consults buffer in new process then eval query."
-       (interactive) (ediprolog-dwim '(16)))
+;; (use-package! ediprolog
+;;   ;; :mode ("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode)
+;;   :mode "\\.\\(pl\\|pro\\|lgt\\)"
+;;   :config
 
-(use-package! ediprolog
-  :mode ("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode)
-  ;; FIXME
-  ;; :bind ((", e e" . ediprolog-dwim))
+;;   ;; (setq ediprolog-system 'swi)
+;;   ;; (setq ediprolog-program "/usr/bin/swipl")
+
+;;   ;; (setq ediprolog-system 'swi)
+;;   ;; (setq ediprolog-program "/snap/bin/swi-prolog.swipl")
+
+;;   ;; works, but has ^M after each line
+;;   (setq ediprolog-program "docker")
+;;   (setq ediprolog-program-switches '("run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-e" "TERM=dumb" "-it" "mjt128/scryer-prolog"))
+
+;;   )
+
+(use-package! prolog
+  ;; :mode "\\.\\(pl\\|pro\\|lgt\\)"
+  ;; :mode ("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode)
+  :mode ("\\.pl\\'" . prolog-mode)
   :config
-
-  ;; (setq ediprolog-system 'swi)
-  ;; (setq ediprolog-program "/usr/bin/swipl")
-
-  ;; (setq ediprolog-system 'swi)
-  ;; (setq ediprolog-program "/snap/bin/swi-prolog.swipl")
+  (require 'ediprolog)
 
   ;; works, but has ^M after each line
   (setq ediprolog-program "docker")
-  (setq ediprolog-program-switches '("run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-e" "TERM=dumb" "-it" "mjt128/scryer-prolog"))
+  (setq ediprolog-program-switches '("run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-e"
+                                     "TERM=dumb" "-it" "mjt128/scryer-prolog"))
+
+  (defun pl-kill-prolog ()
+    (:documentation (documentation 'ediprolog-kill-prolog))
+    (interactive)
+    (ediprolog-dwim 0))
+  (defun pl-consult-buffer ()
+    (:documentation (documentation 'ediprolog-consult))
+    (interactive)
+    (ediprolog-consult))
+  (defun pl-consult-buffer-new ()
+    (:documentation (documentation 'ediprolog-consult))
+    (interactive)
+    (ediprolog-consult t))
+  (defun pl-toplevel ()
+    (:documentation (documentation 'ediprolog-toplevel))
+    (interactive)
+    (ediprolog-dwim 7))
+  (defun pl-consult-query ()
+    "Consults buffer then eval query."
+    (interactive)
+    (ediprolog-dwim '(4)))
+  (defun pl-consult-query-new ()
+    "Consults buffer in new process then eval query."
+    (interactive)
+    (ediprolog-dwim '(16)))
+  (defun pl-query ()
+    (:documentation (documentation 'ediprolog-query))
+    (interactive)
+    (ediprolog-query))
 
   (map! :map prolog-mode-map
         :n ", e RET" #'ediprolog-dwim
         :n ", e b" #'ediprolog-consult
         :n ", e B" #'pl-consult-buffer-new
-        :n ", e e" #'ediprolog-query
+        :n ", e e" #'pl-query
         :n ", e q" #'pl-consult-query
         :n ", e Q" #'pl-consult-query-new
         :n ", r k" #'pl-kill-prolog
         :n ", r t" #'pl-toplevel
-        :n ", e c" #'ediprolog-remove-interactions
-        )
-
+        :n ", e c" #'ediprolog-remove-interactions)
   )
 
 (after! org
@@ -150,3 +177,6 @@
   ;; close org trees by default
   ;; (org-cycle-global 1)
   )
+
+(add-hook! org-mode
+  (org-cycle-global 1))
