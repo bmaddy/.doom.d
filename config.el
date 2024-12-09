@@ -97,34 +97,22 @@
 (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
 (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
-;; (use-package! ediprolog
-;;   ;; :mode ("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode)
-;;   :mode "\\.\\(pl\\|pro\\|lgt\\)"
-;;   :config
-
-;;   ;; (setq ediprolog-system 'swi)
-;;   ;; (setq ediprolog-program "/usr/bin/swipl")
-
-;;   ;; (setq ediprolog-system 'swi)
-;;   ;; (setq ediprolog-program "/snap/bin/swi-prolog.swipl")
-
-;;   ;; works, but has ^M after each line
-;;   (setq ediprolog-program "docker")
-;;   (setq ediprolog-program-switches '("run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-e" "TERM=dumb" "-it" "mjt128/scryer-prolog"))
-
-;;   )
-
 (use-package! prolog
-  ;; :mode "\\.\\(pl\\|pro\\|lgt\\)"
-  ;; :mode ("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode)
   :mode ("\\.pl\\'" . prolog-mode)
   :config
   (require 'ediprolog)
 
+  ;; (setq ediprolog-system 'swi)
+  ;; (setq ediprolog-program "/usr/bin/swipl")
+
+  ;; (setq ediprolog-system 'swi)
+  ;; (setq ediprolog-program "/snap/bin/swi-prolog.swipl")
+
   ;; works, but has ^M after each line
   (setq ediprolog-program "docker")
-  (setq ediprolog-program-switches '("run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-e"
-                                     "TERM=dumb" "-it" "mjt128/scryer-prolog"))
+  (setq ediprolog-program-switches
+        '("run" "-v" ".:/mnt" "-v" "/tmp:/tmp" "-e" "-it"
+          "TERM=dumb" "mjt128/scryer-prolog"))
 
   (defun pl-kill-prolog ()
     (:documentation (documentation 'ediprolog-kill-prolog))
@@ -143,11 +131,11 @@
     (interactive)
     (ediprolog-dwim 7))
   (defun pl-consult-query ()
-    "Consults buffer then eval query."
+    "Consult the buffer then runs the query."
     (interactive)
     (ediprolog-dwim '(4)))
   (defun pl-consult-query-new ()
-    "Consults buffer in new process then eval query."
+    "Consult the buffer in new process then runs the query."
     (interactive)
     (ediprolog-dwim '(16)))
   (defun pl-query ()
@@ -169,14 +157,7 @@
 
 (after! org
   ;; track when todo items are closed
-  (setq org-log-done 'time)
-  ;; this doesn't seem to work
-  ;; don't wrap lines
-  ;; (+word-wrap-mode 0)
-  ;; this doesn't seem to work
-  ;; close org trees by default
-  ;; (org-cycle-global 1)
-  )
+  (setq org-log-done 'time))
 
 (add-hook! org-mode
   (org-cycle-global 1))
